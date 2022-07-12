@@ -309,7 +309,7 @@ class SystemValues(object):
                     'GET_NS_PAYLOAD_WATCHDOG_TIMEOUT': {
                         'subPort': 9,
                         'inoutInfo': {
-                            'args': None, 
+                            'args': None,
                             'returns': {
                                 'err': '>b',  # err status
                                 'timeout_ms': '>u4'
@@ -319,7 +319,7 @@ class SystemValues(object):
                     'SET_NS_PAYLOAD_WATCHDOG_TIMEOUT': {
                         'subPort': 10,
                         'inoutInfo': {
-                            'args': ['>u4'], 
+                            'args': ['>u4'],
                             'returns': {
                                 'err': '>b',  # err status
                             }
@@ -2227,7 +2227,7 @@ class SystemValues(object):
                                 'CommsStat_flags_3': '<B',
                                 'CommsStat_flags_4': '<B',
                                 'CommsStat_flags_5': '<B',
-                                'CommsStat_flags_6': '<B',      
+                                'CommsStat_flags_6': '<B',
 
                             }
                         }
@@ -2546,7 +2546,7 @@ class SystemValues(object):
                                 'err': '>b',
                             }
                         }
-                    },                    
+                    },
                     'ADCS_SAVE_CONFIG': {
                         'subPort': 61,
                         'inoutInfo': {
@@ -2648,7 +2648,7 @@ class SystemValues(object):
                                 'Altitude': '>f4',
                                 'ecef_pos_x': '>i2',
                                 'ecef_pos_y': '>i2',
-                                'ecef_pos_z': '>i2'                                             
+                                'ecef_pos_z': '>i2'
                             }
                         }
                     },
@@ -3484,8 +3484,8 @@ class SystemValues(object):
                                 'cubestar_err_margin': '>B',
                                 'cubestar_delay_t': '>u2',
                                 'cubestar_centroid_x': '>f4',
-                                'cubestar_centroid_y': '>f4',    
-                                'cubestar_focal_len': '>f4', 
+                                'cubestar_centroid_y': '>f4',
+                                'cubestar_focal_len': '>f4',
                                 'cubestar_radical_distor_1': '>f4',
                                 'cubestar_radical_distor_2': '>f4',
                                 'cubestar_tangent_distor_1': '>f4',
@@ -3537,7 +3537,7 @@ class SystemValues(object):
                                 'est_select_arr_8': '>B',
                                 'est_MTM_mode': '>B',
                                 'est_MTM_select': '>B',
-                                'est_cam_sample_period': '>B',                          
+                                'est_cam_sample_period': '>B',
                                 'asgp4_inclination': '>f4',
                                 'asgp4_RAAN': '>f4',
                                 'asgp4_ECC': '>f4',
@@ -3713,29 +3713,40 @@ class SystemValues(object):
                         'what': 'Tell the payload to display artwork and capture an image.',
                         'subPort': 1,
                         'inoutInfo': {
-                            'args': None, 
+                            'args': None,
                             'returns': {
                                 'err': '>b',
                                 'confirmation_err': '>B'
                             }
                         }
                     },
-                    'CONFIRM_DOWNLINK': {
-                        'what': 'Let the payload know that the last image it took was received by the ground and can be deleted.',
+                    'GET_IMAGE': {
+                        'what': 'Transfer the next queued image from the payload to the OBC.',
                         'subPort': 2,
                         'inoutInfo': {
-                            'args': None, 
+                            'args': None,
+                            'returns': {
+                                'err': '>b',
+                                'image_size': '>u4'
+                            }
+                        }
+                    },
+                    'CONFIRM_DOWNLINK': {
+                        'what': 'Let the payload know that the last image it took was received by the ground and can be deleted.',
+                        'subPort': 3,
+                        'inoutInfo': {
+                            'args': None,
                             'returns': {
                                 'err': '>b',
                             }
                         }
                     },
-                    
+
                     'GET_HEARTBEAT': {
-                        'what': 'Receive a ping (char h) from the payload',
-                        'subPort': 3,
+                        'what': 'Receive a ping (char h) from the payload.',
+                        'subPort': 4,
                         'inoutInfo': {
-                            'args': None, 
+                            'args': None,
                             'returns': {
                                 'err': '>b',
                                 'heartbeat': '>S1'
@@ -3744,7 +3755,7 @@ class SystemValues(object):
                     },
                     'GET_FLAG': {
                         'what': 'Get the status of a payload flag. Input: flag/subcode decimal value.',
-                        'subPort': 4,
+                        'subPort': 5,
                         'inoutInfo': {
                             'args': ['>B'], # flag/subcode BYTE! Do not use a char
                             'returns': {
@@ -3755,7 +3766,7 @@ class SystemValues(object):
                     },
                     'GET_FILENAME': {
                         'what': 'Get a desired image/artwork file name. Input: subcode demimal value.',
-                        'subPort': 5,
+                        'subPort': 6,
                         'inoutInfo': {
                             'args': ['>B'], # subcode BYTE! Do not use a char
                             'returns': {
@@ -3764,11 +3775,32 @@ class SystemValues(object):
                             }
                         }
                     },
+                    'TRIM_LOG_FILE': {
+                        'what': 'Trim the payload log file so that it stays manageable.',
+                        'subPort': 7,
+                        'inoutInfo': {
+                            'args': None,
+                            'returns': {
+                                'err': '>b',
+                            }
+                        }
+                    },
+                    'GET_LOG_FILE': {
+                        'what': 'Transfer the payload log file to the OBC.',
+                        'subPort': 8,
+                        'inoutInfo': {
+                            'args': None,
+                            'returns': {
+                                'err': '>b',
+                                'log_size': '>u4'
+                            }
+                        }
+                    },
                     'GET_TELEMETRY': {
                         'what': 'Get telemetry data from the payload',
-                        'subPort': 6,
+                        'subPort': 9,
                         'inoutInfo': {
-                            'args': None, 
+                            'args': None,
                             'returns': {
                                 'err': '>b',
                                 'temp0': '>i2',
@@ -3786,9 +3818,9 @@ class SystemValues(object):
                     },
                     'GET_SW_VERSION': {
                         'what': 'Get payload software version.',
-                        'subPort': 7,
+                        'subPort': 10,
                         'inoutInfo': {
-                            'args': None, 
+                            'args': None,
                             'returns': {
                                 'err': '>b',
                                 'version': '>S7'
@@ -3798,4 +3830,3 @@ class SystemValues(object):
                 }
             }
         }
-
