@@ -3827,6 +3827,37 @@ class SystemValues(object):
                             }
                         }
                     },
+                    'NVM_START': {
+                        'what': 'Start the northern voices mission. Input: name of audio file on OBC.',
+                        'subPort': 11,
+                        'inoutInfo': {
+                            'args': ['>S30'],
+                            'returns': {
+                                'err': '>b',
+                            }
+                        }
+                    },
+                    'NVM_STOP': {
+                        'what': 'Stop the northern voices mission.',
+                        'subPort': 12,
+                        'inoutInfo': {
+                            'args': None,
+                            'returns': {
+                                'err': '>b',
+                            }
+                        }
+                    },
+                    'NVM_GET_STATUS': {
+                        'what': 'Get the status of the northern voices mission.',
+                        'subPort': 13,
+                        'inoutInfo': {
+                            'args': None,
+                            'returns': {
+                                'err': '>b',
+                                'nvm_running': '>?'
+                            }
+                        }
+                    },
                 }
             }
         }
