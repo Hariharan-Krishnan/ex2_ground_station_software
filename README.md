@@ -86,9 +86,9 @@ git clone https://github.com/gruffen/gr-gpredict-doppler-3.8.git
 cd gr-gpredict-doppler-3.8
 rm -r build
 ```
-Follow all of the readme instructions in [gr-gpredict-doppler](https://github.com/wnagele/gr-gpredict-doppler), including "Setting up Gpredict". Gpredict can be started using the `gpredict` command. Type the following command (or manually copy over the .yml file).
+Follow all of the readme instructions in [gr-gpredict-doppler](https://github.com/wnagele/gr-gpredict-doppler), including "Setting up Gpredict". Gpredict can be started using the `gpredict` command. Type the following command (**or manually copy over the .yml file**).
 ```
-cp ex2_sdr_install_path/gnuradio/utils/gpredict_doppler_doppler.block.yml /home/josh/miniconda3/envs/gnuradio-3.9.4/share/gnuradio/grc
+cp [ex2_sdr_install_path]/gnuradio/utils/gpredict_doppler_doppler.block.yml /home/[user]/anaconda3/envs/gnuradio-3.9.4/share/gnuradio/grc
 ```
 Step 7: Run the ground station with doppler. This must be done every new session when talking to an in-orbit satellite.
 Like Step 4, activate the gnuradio environment, open GNURadio, and open Gpredict. Open Gpredict's Radio Control and set the target uplink and downlink frequencies to 437.875000 MHz. Set the target to the satellite you want to track. Set the Device to GNURadio. Set the Cycle field to 100 msec. Select Track and Engage. In GNURadio, open and run the relevant flow graph for your application in `ex2_sdr/gnuradio/uhf/` or  `ex2_sdr/gnuradio/sband/`, ensuring that the file name has "doppler" in it. Next, you can run the relevant ground station application (e.g. cli, sat_cli, ftp) using yarn, making sure to use the correct arguments for what you're doing.
